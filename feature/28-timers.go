@@ -24,3 +24,5 @@ func main() {
 
 	time.Sleep(time.Second * 2)
 }
+
+// timer是一个定时器，代表未来的一个单一事件，你可以告诉timer你要等待多长时间，它提供一个Channel，在将来的那个时间那个Channel提供了一个时间值。
