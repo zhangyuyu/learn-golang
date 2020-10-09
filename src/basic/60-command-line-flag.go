@@ -21,5 +21,5 @@ func main() {
 	fmt.Println("tail:", flag.Args())
 }
 
-// go run src/feature/60-command-line-flag.go -word=opt -numb=7 -fork -svar=flag arg1 arg2
-// go run src/feature/60-command-line-flag.go -h
+// go run src/basic/60-command-line-flag.go -word=opt -numb=7 -fork -svar=flag arg1 arg2
+// go run src/basic/60-command-line-flag.go -h

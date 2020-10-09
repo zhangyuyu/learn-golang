@@ -38,7 +38,7 @@ func main() {
 }
 
 /*
-$ go run src/feature/61-command-line-subcommand.go foo -enable -name=joe a1 a2
+$ go run src/basic/61-command-line-subcommand.go foo -enable -name=joe a1 a2
 subcommand 'foo'
   enable: true
   name: joe
