@@ -7,7 +7,7 @@ import (
 func main() {
 	panic("a problem")
 
-	_, err := os.Open("feature/01-hello.go")
+	_, err := os.Open("src/01-hello.go")
 
 	if err != nil {
 		panic(err)

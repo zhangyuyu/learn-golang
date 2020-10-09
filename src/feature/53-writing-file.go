@@ -5,21 +5,23 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os"
+
+	"GolangHelloworld/src/utils"
 )
 
 func main() {
 	d1 := []byte("hello\ngo\n")
 	err := ioutil.WriteFile("writing-dat1.txt", d1, 0644)
-	check(err)
+	utils.Check(err)
 
 	f, err := os.Create("writing-dat2.txt")
-	check(err)
+	utils.Check(err)
 
 	defer f.Close()
 
 	d2 := []byte{115, 111, 109, 101, 10}
 	n2, err := f.Write(d2)
-	check(err)
+	utils.Check(err)
 	fmt.Printf("wrote %d bytes\n", n2)
 
 	n3, err := f.WriteString("writes\n")
@@ -32,10 +34,4 @@ func main() {
 	fmt.Printf("wrote %d bytes\n", n4)
 
 	w.Flush() // 使用 Flush 来确保，已将所有的缓冲操作应用于底层 writer。
-}
-
-func check(e error) {
-	if e != nil {
-		panic(e)
-	}
 }

@@ -22,4 +22,4 @@ func main() {
 	}
 }
 
-//  cat defer.txt| go run feature/54-line-filter.go
+//  cat defer.txt| go run src/54-line-filter.go
