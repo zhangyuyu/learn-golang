@@ -33,3 +33,5 @@ func main() {
 	fmt.Println("> ls -a -l -h")
 	fmt.Println(string(lsOut))
 }
+
+// 生成外部进程，当我们需要在运行的 Go 流程中访问的外部流程时，便可以执行此操作。
