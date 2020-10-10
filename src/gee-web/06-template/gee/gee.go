@@ -1,6 +1,7 @@
 package gee
 
 import (
+	"html/template"
 	"net/http"
 	"path"
 	"strings"
@@ -12,8 +13,10 @@ type HandlerFunc func(*Context)
 // Engine implement the interface of ServeHTTP
 type Engine struct {
 	*RouterGroup
-	router *router
-	groups []*RouterGroup
+	router        *router
+	groups        []*RouterGroup
+	htmlTemplates *template.Template // 将所有的模板加载进内存
+	funcMap       template.FuncMap   // 所有的自定义模板渲染函数
 }
 
 type RouterGroup struct {
@@ -71,6 +74,7 @@ func (engine *Engine) ServeHTTP(writer http.ResponseWriter, request *http.Reques
 
 	context := newContext(writer, request)
 	context.handlers = middlewares
+	context.engine = engine
 	engine.router.handle(context)
 }
 
@@ -92,4 +96,12 @@ func (group *RouterGroup) Static(relativePath string, root string) {
 	handler := group.createStaticHandler(relativePath, http.Dir(root))
 	urlPattern := path.Join(relativePath, "/*filepath")
 	group.GET(urlPattern, handler)
+}
+
+func (engine *Engine) SetFuncMap(funcMap template.FuncMap) {
+	engine.funcMap = funcMap
+}
+
+func (engine *Engine) LoadHTMLGlob(pattern string) {
+	engine.htmlTemplates = template.Must(template.New("").Funcs(engine.funcMap).ParseGlob(pattern))
 }

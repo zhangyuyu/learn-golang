@@ -20,6 +20,8 @@ type Context struct {
 	// middleware
 	handlers []HandlerFunc
 	index    int
+	// engine pointer
+	engine *Engine
 }
 
 func (c *Context) String(code int, format string, values ...interface{}) {
@@ -28,10 +30,13 @@ func (c *Context) String(code int, format string, values ...interface{}) {
 	c.Writer.Write([]byte(fmt.Sprintf(format, values...)))
 }
 
-func (c *Context) HTML(code int, html string) {
+func (c *Context) HTML(code int, name string, data interface{}) {
 	c.SetHeader("Content-Type", "text/html")
 	c.Status(code)
-	c.Writer.Write([]byte(html))
+	err := c.engine.htmlTemplates.ExecuteTemplate(c.Writer, name, data)
+	if err != nil {
+		c.Fail(http.StatusInternalServerError, err.Error())
+	}
 }
 
 func (c *Context) JSON(code int, obj interface{}) {
