@@ -5,7 +5,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"GolangHelloworld/src/utils"
+	"learn-golang/src/utils"
 )
 
 func main() {

@@ -5,7 +5,7 @@ import (
 	"io/ioutil"
 	"os/exec"
 
-	"GolangHelloworld/src/utils"
+	"learn-golang/src/utils"
 )
 
 func main() {

@@ -5,7 +5,7 @@ import (
 	"os/exec"
 	"syscall"
 
-	"GolangHelloworld/src/utils"
+	"learn-golang/src/utils"
 )
 
 func main() {

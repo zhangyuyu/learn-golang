@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"GolangHelloworld/src/utils"
+	"learn-golang/src/utils"
 )
 
 func main() {
