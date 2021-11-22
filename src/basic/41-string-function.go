@@ -42,4 +42,7 @@ func main() {
 	p("Char:     ", "a"[0])
 	p("Char:     ", 'a')
 	p("Char:     ", "a")
+
+	fmt.Println(len(""))
+	fmt.Println(len(strings.TrimSpace("    ")))
 }
