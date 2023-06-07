@@ -31,3 +31,30 @@ func main() {
 	}
 	fmt.Println("2d: ", twoD)
 }
+
+// 测试扩容的原理
+func testSliceExpand() {
+	arr := []int{1}
+
+	myfunc1(arr)
+	fmt.Println(arr) // [1]
+
+	arr = append(arr, 3)
+	arr = append(arr, 4)
+	myfunc2(arr)
+	fmt.Println(arr) // [9 3 4]，不是 [1 3 4]，因为原容量还够，扩容之后指向的是原数组
+}
+
+func myfunc1(arr []int) {
+	arr = append(arr, 2)
+	arr[0] = 0
+	fmt.Println(arr) // [0, 2]
+	return
+}
+
+func myfunc2(arr []int) {
+	arr = append(arr, 5)
+	arr[0] = 9
+	fmt.Println(arr) // [9 3 4 5]
+	return
+}
